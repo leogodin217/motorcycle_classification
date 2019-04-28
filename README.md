@@ -106,13 +106,9 @@ clean classes for each image. The first images results in a class of
 across 700 images. Not a bad start, but it is unlikely that this small
 number of images would be sufficient.
 
-![](./media/image3.png)
+![Image names fro topmotorcycle.com](./media/image3.png)
 
-Figure . Image names fro topmotorcycle.com
-
-![](./media/image4.png)
-
-Figure . Regular expressions to extract targets from image names.
+![Regular expressions to extract targets from image names.](./media/image4.png)
 
 While this data set was interesting, it was not big enough. I found that
 Bing has a great image-search API. Using this API, I was able to
