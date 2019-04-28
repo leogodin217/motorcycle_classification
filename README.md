@@ -1,13 +1,7 @@
 My Data Journey with Motorcycle Classification
 ===============================================
 
-![](./media/image1.png){width="6.5in" height="4.813888888888889in"}
-
-Contents {#contents .TOCHeading}
-========
-
-[My Data Journey with Motorcycle Classification
-1](#my-data-journey-with-motorcycle-classification)
+![](./media/image1.png)
 
 [Summary](#summary)
 
@@ -112,11 +106,11 @@ clean classes for each image. The first images results in a class of
 across 700 images. Not a bad start, but it is unlikely that this small
 number of images would be sufficient.
 
-![](./media/image3.png){width="6.5in" height="2.6993055555555556in"}
+![](./media/image3.png)
 
 Figure . Image names fro topmotorcycle.com
 
-![](./media/image4.png){width="6.5in" height="1.6180555555555556in"}
+![](./media/image4.png)
 
 Figure . Regular expressions to extract targets from image names.
 
@@ -137,12 +131,12 @@ parallel processing. That being said, it is a valuable skill that will
 certainly be useful in the future. With 2800 motorcycle images
 downloaded, it was time to take a peak at what I got.
 
-![](./media/image5.png){width="6.5in" height="4.125694444444444in"}
+![](./media/image5.png)
 
 Figure . Code used to turn totalmotorcycle.com images into searchable
 targets.
 
-![](./media/image6.png){width="6.5in" height="2.975in"}
+![](./media/image6.png)
 
 Figure . Code to download images across 16 threads on 8 cores.
 
@@ -169,7 +163,7 @@ Pre-processing
     per class with a proportion dedicated to each. With that done, it
     was time for some exploratory data analysis.
 
-    ![](./media/image7.png){width="6.5in" height="3.475in"}
+    ![](./media/image7.png)
 
 Figure . Segmenting images to train, validation and test.
 
@@ -186,22 +180,22 @@ EDA
     varied greatly, as shown by the first image. The histogram showed
     that most classes had at least eight images.
 
-    ![](./media/image8.png){width="6.5in" height="3.5833333333333335in"}
+    ![](./media/image8.png)
 
 Figure . Images per class.
 
-![](./media/image9.png){width="6.5in" height="2.486111111111111in"}
+![](./media/image9.png)
 
 Figure . Histogram of images per class.
 
-![](./media/image10.png){width="6.5in" height="6.159027777777778in"}
+![](./media/image10.png)
 
 Figure . Classes with the least and most images.
 
 It was easy to display and resize certain images using Python's PIL
 library.
 
-![](./media/image11.png){width="6.5in" height="3.040277777777778in"}
+![](./media/image11.png)
 
 Figure 9. A resized Indian Motorcycle.
 
@@ -218,8 +212,7 @@ return training, validation and testing data sets that all have the same
 classes. It allows us to subset the data, without worrying about any
 differences in classes.
 
-![](./media/image12.png){width="5.220022965879265in"
-height="4.055555555555555in"}
+![](./media/image12.png)
 
 Figure 10. Sampler to ensure subsets have the same classes.
 
@@ -259,19 +252,19 @@ strong but tails off after 35 epochs. The complex transforms vary more
 but are generally increasing in accuracy. More results are included in
 notebook 5.
 
-![](./media/image13.png){width="6.5in" height="2.4138888888888888in"}
+![](./media/image13.png)
 
 Figure 11. Basic transforms.
 
-![](./media/image14.png){width="6.5in" height="2.8118055555555554in"}
+![](./media/image14.png)
 
 Figure 12. Complex transforms.
 
-![](./media/image15.png){width="6.5in" height="4.8375in"}
+![](./media/image15.png)
 
 Figure 13. Basic transforms.
 
-![](./media/image2.png){width="6.5in" height="4.751388888888889in"}
+![](./media/image2.png)
 -------------------------------------------------------------------
 
 Figure 14. Complex transforms.
@@ -297,7 +290,7 @@ Balance
     using 20% for validation and testing. As expected, classes with
     fewer than eight images performed worse.
 
-    ![](./media/image16.png){width="6.5in" height="4.672916666666667in"}
+    ![](./media/image16.png)
 
 Figure 15. Classes with at least eight images.
 
@@ -317,7 +310,7 @@ motorcycles. Here we see a combination of linear layers and Relu
 functions. We also include batch normalization in the final model for
 generalization. We will discuss that more in a future section.
 
-![](./media/image17.png){width="6.5in" height="1.0166666666666666in"}
+![](./media/image17.png)
 
 Figure . Replaced fully-connected layer in ResNet.
 
@@ -349,11 +342,11 @@ from ResNet-34. This model provided better accuracy than the less
 complicated models and better generalization than the more complicated
 models.
 
-![](./media/image18.png){width="6.5in" height="4.782638888888889in"}
+![](./media/image18.png)
 
 Figure 17. ResNet-18 and ResNet-34
 
-![](./media/image19.png){width="6.5in" height="4.782638888888889in"}
+![](./media/image19.png)
 
 Figure 18. ResNet-101 and ResNet-152.
 
@@ -386,11 +379,11 @@ generalize better, while still having room to improve with more
 training. More importantly, batch normalization shows a steadily
 decreasing validation loss.
 
-![](./media/image20.png){width="6.5in" height="4.74375in"}
+![](./media/image20.png)
 
 Figure . Batch normalization vs. no generalization.
 
-![](./media/image21.png){width="6.5in" height="4.673611111111111in"}
+![](./media/image21.png)
 
 Figure . Droput 20% vs. 40%.
 
@@ -433,12 +426,12 @@ results. In the end, I decided to stick with lr=0.0005, as it should
 provide the most consistent results, considering the variance we see
 from epoch to epoch.
 
-![](./media/image22.png){width="6.5in" height="4.722222222222222in"}
+![](./media/image22.png)
 
 Figure . Learning rate 0.001 vs. 0.0005.
 
-![](./media/image23.png){width="3.236111111111111in"
-height="4.7731244531933505in"}
+![](./media/image23.png)
+
 
 Figure . Learning rate 0.003.
 
@@ -446,7 +439,7 @@ Figure . Learning rate 0.003.
 
 ### Links
 
--   Notebook 11: Code to test batch size. (Utilizes
+-   [Notebook 11](https://github.com/leogodin217/motorcycle_classification/blob/master/code/11%20-%20Testing%20Batch%20Size.ipynb): Code to test batch size. (Utilizes
     modelingfunctions.dataprocessing, modelingfunctions.modeling and
     modelingfunctions.utilities.)
 
@@ -458,12 +451,12 @@ Figure . Learning rate 0.003.
     128 did showed more variance after 75 epochs and 32 showed an
     increasing validation loss.
 
-    ![](./media/image24.png){width="6.5in" height="4.710416666666666in"}
+    ![](./media/image24.png)
 
 Figure . Batch size 128 vs. 64.
 
-![](./media/image25.png){width="3.0208333333333335in"
-height="4.467878390201225in"}
+![](./media/image25.png)
+
 
 Figure . Batch size = 32.
 
@@ -485,8 +478,8 @@ Links
     consistently hits above 40% accuracy and above 70% top-3 accuracy.
     This is the best results from any model shown previously. Not bad.
 
-    ![](./media/image26.png){width="4.902777777777778in"
-    height="6.763319116360455in"}
+    ![](./media/image26.png)
+
 
 Figure . The final model.
 
