@@ -62,8 +62,8 @@ found that totalmotorcycle.com had a very consistent naming convention
 for motorcycles and included just about every commercial motorcycle ever
 made. This was a good start.
 
-Obtaining Data (Notebooks 1 and 2)
-----------------------------------
+Obtaining Data
+--------------
 
 ### Links
 
@@ -151,7 +151,7 @@ Figure 5. Segmenting images to train, validation and test.
 EDA
 ---
 
-Links
+### Links
 
 -   [Notebook
     4](https://github.com/leogodin217/motorcycle_classification/blob/master/code/4%20-%20Image%20EDA.ipynb):
@@ -201,7 +201,7 @@ Figure . Sampler to ensure subsets have the same classes.
 Transforms
 ----------
 
-Links
+### Links
 
 -   [Notebook
     5](https://github.com/leogodin217/motorcycle_classification/blob/master/code/5%20-%20Transform%20Selection.ipynb):
@@ -254,7 +254,7 @@ Figure . Complex transforms.
 Balance
 -------
 
-Links
+### Links
 
 -   [Notebook
     6](https://github.com/leogodin217/motorcycle_classification/blob/master/code/6%20-%20Testing%20Data%20Balance.ipynb):
@@ -303,11 +303,13 @@ One thing to note on all results is that they are stochastic. ResNet
 with random data transformations is not a deterministic model. This
 means we may run the exact same experiment twice and get different
 results. Normally, we would seed the random generator, but I chose not
-to. This allowed me to see how the results would vary.
+to. This allowed me to see how the results would vary. I tested various
+optimization functions and ADAM optimization greatly outperformed
+everything else. All results in this document use ADAM optimization.
 
 ### Resnet
 
-Links
+### Links
 
 -   [Notebook
     7](https://github.com/leogodin217/motorcycle_classification/blob/master/code/7%20-%20Model%20Selection.ipynb):
@@ -330,17 +332,170 @@ Figure . ResNet-18 and ResNet-34
 
 Figure . ResNet-101 and ResNet-152.
 
-### Batchnorm vs. Dropout
+### Generalization
+
+### Links
+
+-   [Notebook
+    8](https://github.com/leogodin217/motorcycle_classification/blob/master/code/8%20-%20Batchnorm%20vs%20Dropout.ipynb):
+    Code to test various methods of generalization. (Utilizes
+    modelingfunctions.dataprocessing, modelingfunctions.modeling and
+    modelingfunctions.utilities.)
+
+Generalization entails modifications to the model to ensure it does not
+only fit the training data, but validation and test data as well. There
+are three common methods used in convolutional neural networks, batch
+normalization, dropout and none. Dropout randomly ignores some
+proportion of the features. This provides generalization by only using a
+random set of features during each epoch. While this is good for
+generalization, it requires more epochs for training and often lowers
+accuracy. Batch normalization takes a different approach.
+
+Instead of ignoring features, it normalizes the output of one layer and
+before passing it to the next layer. This ensures that during each
+epoch, the model is using the same distribution between all layers. With
+no generalization, we simply pass data as it is. My experiments showed
+that batch normalization was probably the best. Just like in other
+experiments, there was not a clear winner, but something that seemed to
+generalize better, while still having room to improve with more
+training. More importantly, batch normalization shows a steadily
+decreasing validation loss.
+
+![](./media/image19.png){width="6.5in" height="4.74375in"}
+
+Figure 19. Batch normalization vs. no generalization.
+
+![](./media/image20.png){width="6.5in" height="4.673611111111111in"}
+
+Figure 20. Droput 20% vs. 40%.
 
 Model tuning
 ------------
 
+Now we have a final model, including data transforms and normalization,
+we need to tune the model. There are two hyperparameters that should be
+tuned using ResNet-34 with ADAM optimization, learning rate and batch
+size.
+
 ### Learning rate
 
+### Links
+
+-   [Notebook
+    9](https://github.com/leogodin217/motorcycle_classification/blob/master/code/9%20-%20Learning%20rate.ipynb):
+    Code to test various learning rates. (Utilizes
+    modelingfunctions.dataprocessing, modelingfunctions.modeling and
+    modelingfunctions.utilities.)
+
+-   [Notebook
+    10](https://github.com/leogodin217/motorcycle_classification/blob/master/code/10%20-%20Learning-rate%20decay.ipynb):
+    Code to test learning rate decay. (Utilizes
+    modelingfunctions.dataprocessing, modelingfunctions.modeling and
+    modelingfunctions.utilities.)
+
+Learning rate is the first hyperparameter to tune. I tested rates as
+high as 0.003 and as low as 0.001. In general, I found that lower
+learning rates had less various between epochs, but the effect was not
+nearly as different as I expected. There is a lot of randomness from one
+epoch to the next.
+
+The image below shows the difference between lr=0.001 for 100 epochs and
+lr=0.0005 for 200 epochs. Both have similar patterns. Though, 0.0005 has
+slightly smaller peaks and valleys. I also tested learning rate decay.
+It did not perform well. See notebook 10 for the results. Finally, I
+tested lr=0.003 and let it run for 200 epochs. That provided promising
+results. In the end, I decided to stick with lr=0.0005, as it should
+provide the most consistent results, considering the variance we see
+from epoch to epoch.
+
+![](./media/image21.png){width="6.5in" height="4.722222222222222in"}
+
+Figure 21. Learning rate 0.001 vs. 0.0005.
+
+![](./media/image22.png){width="3.236111111111111in"
+height="4.7731244531933505in"}
+
+Figure 22. Learning rate 0.003.
+
 ### Batch Size
+
+### Links
+
+-   Notebook 11: Code to test batch size. (Utilizes
+    modelingfunctions.dataprocessing, modelingfunctions.modeling and
+    modelingfunctions.utilities.)
+
+    Throughout most of this work, I assumed batch size only impacted the
+    physical performance of the model. Larger batch sizes would take
+    less time to train than smaller batch sizes. I found out that the
+    ADAM optimizer changes with batch size, as the gradients are
+    calculated after each batch. Using a batch size of 64 worked best.
+    128 did showed more variance after 75 epochs and 32 showed an
+    increasing validation loss.
+
+    ![](./media/image23.png){width="6.5in" height="4.710416666666666in"}
+
+Figure 23. Batch size 128 vs. 64.
+
+![](./media/image24.png){width="3.0208333333333335in"
+height="4.467878390201225in"}
+
+Figure 24. Batch size = 32.
+
+Final Model
+===========
+
+Links
+
+-   [Notebook
+    12](https://github.com/leogodin217/motorcycle_classification/blob/master/code/12%20-%20Final%20Model.ipynb):
+    : Code to run the final model. (Utilizes
+    modelingfunctions.dataprocessing, modelingfunctions.modeling and
+    modelingfunctions.utilities.)
+
+    It has been a long journey, but we are not at the point where we can
+    see the final model. This is a ResNet-34 model, using ADAM
+    optimization and batch normalization. We use a batch size or 64 and
+    a learning rate of 0.0005. Towards the end of 200 epochs, it
+    consistently hits above 40% accuracy and above 70% top-3 accuracy.
+    This is the best results from any model shown previously. Not bad.
+
+    ![](./media/image25.png){width="4.902777777777778in"
+    height="6.763319116360455in"}
+
+Figure 25. The final model.
 
 Further Research
 ================
 
+I am not sure if further research is the correct term. While we found
+many ways to impact our results, nothing was completely consistent. Some
+of our sub-optimal models may provide a better result at epoch 200 than
+our best model. There is just too much inconsistency. To improve this
+model, much more data is needed. We have 366 classes and they mostly
+only cover motorcycles made between 2016 and 2018. A comprehensive set
+of classes would number in the thousands. Yet, we have proven that a
+convolutional neural network can be trained to classify motorcycles. A
+governmental or commercial application is likely plausible with more
+data.
+
 Conclusion
 ==========
+
+Our goal was to classify images of motorcycles by year, make and model.
+We utilized Pytorch transfer learning with a ResNet convolutional neural
+network. Early attempts stalled below 40% accuracy. Through data
+transformation, model building and model tuning, we consistently
+achieved above 40%, with greater than 70% top-3 accuracy.
+
+While these results are encouraging, they would likely greatly improve
+with much more data. With so few images for so many classes, we needed
+to utilize data augmentation. This augmentation created a large variance
+in loss and accuracy from epoch to epoch. This created a situation where
+stopping at 199 epochs might increase accuracy by up to 5% over stopping
+at epoch 200.
+
+This was a satisfying project. I learned a lot about convolutional
+neural networks and PyTorch. As a bonus, I learned about parallel
+programming and image manipulation in Python. Though, I will not likely
+continue this project, I now have the skills to tackle other challenges.
