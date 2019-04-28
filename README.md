@@ -1,7 +1,7 @@
 My Data Journey with Motorcycle Classification 
 ===============================================
 
-![](./media/image1.png){width="6.5in" height="4.767361111111111in"}
+![](./media/image1.png){width="6.5in" height="4.813888888888889in"}
 
 Summary
 =======
@@ -92,11 +92,11 @@ number of images would be sufficient.
 
 ![](./media/image2.png){width="6.5in" height="2.6993055555555556in"}
 
-Figure . Image names fro topmotorcycle.com
+Figure 1. Image names fro topmotorcycle.com
 
 ![](./media/image3.png){width="6.5in" height="1.6180555555555556in"}
 
-Figure . Regular expressions to extract targets from image names.
+Figure 2. Regular expressions to extract targets from image names.
 
 While this data set was interesting, it was not big enough. I found that
 Bing has a great image-search API. Using this API, I was able to
@@ -117,12 +117,12 @@ downloaded, it was time to take a peak at what I got.
 
 ![](./media/image4.png){width="6.5in" height="4.125694444444444in"}
 
-Figure . Code used to turn totalmotorcycle.com images into searchable
+Figure 3. Code used to turn totalmotorcycle.com images into searchable
 targets.
 
 ![](./media/image5.png){width="6.5in" height="2.975in"}
 
-Figure . Code to download images across 16 threads on 8 cores.
+Figure 4. Code to download images across 16 threads on 8 cores.
 
 Pre-processing 
 ---------------
@@ -149,7 +149,7 @@ Pre-processing
 
     ![](./media/image6.png){width="6.5in" height="3.475in"}
 
-Figure . Segmenting images to train, validation and test.
+Figure 5. Segmenting images to train, validation and test.
 
 EDA
 ---
@@ -166,22 +166,22 @@ EDA
 
     ![](./media/image7.png){width="6.5in" height="3.5833333333333335in"}
 
-Figure . Images per class.
+Figure 6. Images per class.
 
 ![](./media/image8.png){width="6.5in" height="2.486111111111111in"}
 
-Figure . Histogram of images per class.
+Figure 7. Histogram of images per class.
 
 ![](./media/image9.png){width="6.5in" height="6.159027777777778in"}
 
-Figure . Classes with the least and most images.
+Figure 8. Classes with the least and most images.
 
 It was easy to display and resize certain images using Python's PIL
 library.
 
 ![](./media/image10.png){width="6.5in" height="3.040277777777778in"}
 
-Figure 9. A resized Indian Motorcycle.
+Figure . A resized Indian Motorcycle.
 
 Data Tuning
 ===========
@@ -199,7 +199,7 @@ differences in classes.
 ![](./media/image11.png){width="5.220022965879265in"
 height="4.055555555555555in"}
 
-Figure 10. Sampler to ensure subsets have the same classes.
+Figure . Sampler to ensure subsets have the same classes.
 
 Transforms
 ----------
@@ -239,20 +239,20 @@ notebook 5.
 
 ![](./media/image12.png){width="6.5in" height="2.4138888888888888in"}
 
-Figure 11. Basic transforms.
+Figure . Basic transforms.
 
 ![](./media/image13.png){width="6.5in" height="2.8118055555555554in"}
 
-Figure 12. Complex transforms.
+Figure . Complex transforms.
 
 ![](./media/image14.png){width="6.5in" height="4.8375in"}
 
-Figure 13. Basic transforms.
+Figure . Basic transforms.
 
 ![](./media/image15.png){width="6.5in" height="4.751388888888889in"}
 --------------------------------------------------------------------
 
-Figure 14. Complex transforms.
+Figure . Complex transforms.
 
 Balance
 -------
@@ -277,7 +277,7 @@ Balance
 
     ![](./media/image16.png){width="6.5in" height="4.672916666666667in"}
 
-Figure 15. Classes with at least eight images.
+Figure . Classes with at least eight images.
 
 Modeling
 ========
@@ -297,7 +297,7 @@ generalization. We will discuss that more in a future section.
 
 ![](./media/image17.png){width="6.5in" height="1.0166666666666666in"}
 
-Figure . Replaced fully-connected layer in ResNet.
+Figure 16. Replaced fully-connected layer in ResNet.
 
 Model Selection
 ---------------
@@ -329,11 +329,11 @@ models.
 
 ![](./media/image18.png){width="6.5in" height="4.782638888888889in"}
 
-Figure 17. ResNet-18 and ResNet-34
+Figure . ResNet-18 and ResNet-34
 
 ![](./media/image19.png){width="6.5in" height="4.782638888888889in"}
 
-Figure 18. ResNet-101 and ResNet-152.
+Figure . ResNet-101 and ResNet-152.
 
 ### Generalization
 
@@ -366,11 +366,11 @@ decreasing validation loss.
 
 ![](./media/image20.png){width="6.5in" height="4.74375in"}
 
-Figure . Batch normalization vs. no generalization.
+Figure 19. Batch normalization vs. no generalization.
 
 ![](./media/image21.png){width="6.5in" height="4.673611111111111in"}
 
-Figure . Droput 20% vs. 40%.
+Figure 20. Droput 20% vs. 40%.
 
 Model tuning
 ------------
@@ -413,12 +413,12 @@ from epoch to epoch.
 
 ![](./media/image22.png){width="6.5in" height="4.722222222222222in"}
 
-Figure . Learning rate 0.001 vs. 0.0005.
+Figure 21. Learning rate 0.001 vs. 0.0005.
 
 ![](./media/image23.png){width="3.236111111111111in"
 height="4.7731244531933505in"}
 
-Figure . Learning rate 0.003.
+Figure 22. Learning rate 0.003.
 
 ### Batch Size
 
@@ -438,12 +438,12 @@ Figure . Learning rate 0.003.
 
     ![](./media/image24.png){width="6.5in" height="4.710416666666666in"}
 
-Figure . Batch size 128 vs. 64.
+Figure 23. Batch size 128 vs. 64.
 
 ![](./media/image25.png){width="3.0208333333333335in"
 height="4.467878390201225in"}
 
-Figure . Batch size = 32.
+Figure 24. Batch size = 32.
 
 Final Model
 ===========
@@ -466,7 +466,7 @@ Links
     ![](./media/image26.png){width="4.902777777777778in"
     height="6.763319116360455in"}
 
-Figure . The final model.
+Figure 25. The final model.
 
 Further Research
 ================
