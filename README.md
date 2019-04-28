@@ -1,4 +1,4 @@
-My Data Journey with Motorcycle Classification 
+My Data Journey with Motorcycle Classification
 ===============================================
 
 ![](./media/image1.png){width="6.5in" height="4.813888888888889in"}
@@ -9,62 +9,21 @@ Contents {#contents .TOCHeading}
 [My Data Journey with Motorcycle Classification
 1](#my-data-journey-with-motorcycle-classification)
 
-[Summary 1](#summary)
+[Summary](#summary)
 
-[Data 2](#data)
+[Data](#data)
 
-[Obtaining Data 2](#obtaining-data)
+[EDA](#eda)
 
-[Links 2](#links)
+[Data Tuning](#data-tuning)
 
-[Pre-processing 4](#pre-processing)
+[Modeling](#modeling)
 
-[Links 4](#links-1)
+[Final Model](#final-model)
 
-[EDA 5](#eda)
+[Further Research](#further-research)
 
-[Links 5](#links-2)
-
-[Data Tuning 8](#data-tuning)
-
-[Transforms 9](#transforms)
-
-[Links 9](#links-3)
-
-[![](./media/image2.png){width="6.5in" height="4.751388888888889in"}
-12](#section)
-
-[Balance 12](#balance)
-
-[Links 12](#links-4)
-
-[Modeling 13](#modeling)
-
-[Model Selection 14](#model-selection)
-
-[Resnet 14](#resnet)
-
-[Links 14](#links-5)
-
-[Generalization 15](#generalization)
-
-[Links 15](#links-6)
-
-[Model tuning 17](#model-tuning)
-
-[Learning rate 17](#learning-rate)
-
-[Links 17](#links-7)
-
-[Batch Size 19](#batch-size)
-
-[Links 19](#links-8)
-
-[Final Model 21](#final-model)
-
-[Further Research 22](#further-research)
-
-[Conclusion 23](#conclusion)
+[Conclusion](#conclusion)
 
 Summary
 =======
@@ -187,7 +146,7 @@ targets.
 
 Figure . Code to download images across 16 threads on 8 cores.
 
-Pre-processing 
+Pre-processing
 ---------------
 
 ### Links
