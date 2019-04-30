@@ -220,16 +220,7 @@ Balance
     I wanted to test how the model performs when only selecting classes
     with at least eight images and conversely, with fewer than eight. I
     found that the more images per class, the better the model
-    performed. In one experiment, I used only 10% of the images for
-    validation and 10% for testing. This model performed the best, but I
-    was concerned that was too few images for validation and testing.
-    Therefore, I decided to use only classes with at least eight images,
-    using 20% for validation and testing. As expected, classes with
-    fewer than eight images performed worse.
-
-    ![](./media/image16.png)
-
-Figure 15. Classes with at least eight images.
+    performed.
 
 Modeling
 ========
