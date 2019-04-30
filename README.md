@@ -86,7 +86,8 @@ simply too few images per class. To augment the initial data, I utilized
 the Bing search API and finished with 2800 images.
 
 For more information on the process of obtaining data, follow this link.
-[Obtaining data](https://github.com/leogodin217/motorcycle_classification/obtaining_data.md)
+[Obtaining data](https://github.com/leogodin217/motorcycle_classification/blob/master/obtaining_data.md)
+
 Pre-processing
 ---------------
 
