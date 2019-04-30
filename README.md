@@ -24,7 +24,7 @@ Summary
 
 It always starts the same way. The forum post is accompanied by a photo
 of some random motorcycle. What bike is this? Experts and novices alike
-scramble to find the make, model and year of the motorcycle pictured.
+scramble to find the year, make and model of the motorcycle pictured.
 Wouldn't it be nice to easily classify a motorcycle from an image? This
 project seeks to do just that.
 
@@ -40,42 +40,42 @@ collect and process data, while building a suitable model for
 classification.
 
 In the end, we will find that model tuning, data transformation, and
-data augmentation have, at best, incremental benefits on the model. In
+data augmentation have, at best, incremental benefits. In
 fact, the best time I spent on this project involved performance tuning
 Pytorch itself to achieve faster modeling times.
 
 Throughout the last eight weeks, I conducted myriad experiments. Not all
-are included in this document or code repository. Most test results show
-will test data with fifty targets over fifty epochs. Some will include
-more epochs as needed. Data with fifty targets was the sweet spot
+are included in this document or code repository. Most experiments
+test data with fifty targets over fifty epochs. Some will include
+more epochs as needed. Fifty targets was the sweet spot
 between a low number of targets with high accuracy and a high number of
 targets with low accuracy.
 
 \*\* Please note. Only selected code examples are included in this
 document. To see all code, look through the Jupyter notebooks and the
 two python packages in the git repository. The notebooks are numbered in
-order needed to run all of them. They have all ben saved with output.
+order needed to run all of them. They all include output.
 This means you can see the code and results in the Github repository.
 
 \*\* Since I do not have license to publish the data I used, data is not
 included in this repository. Though, the code to obtain data is. See
 notebooks 1 and 2. Notebook 2 will require a Microsoft Azure account and
 an API key for their cognitive services. As with any automated image
-download, issues can occur. The most common was bad images and images
+download, issues can occur. The most common are bad images and images
 with long names. These are easily resolved and script output points to
 the issues.
 
 \*\* To run the Jupyter notebooks, a little setup is required. Libraries
 are listed in each of the notebooks. I recommend using Anaconda and
 creating a virtual environment. Utility functions and classes are
-included in randomdatautilities and modeling. The can be installed with
+included in randomdatautilities and modeling. They can be installed with
 pip -e.
 
 Data
 ====
 
 
-I could not find any existing free data sets for image classification.
+I could not find any existing free data sets for motorcycle classification.
 There were commercial options, but prices were not listed. In the end, I
 decided to create my own data set. After a lot of experimentation, I
 found that totalmotorcycle.com had a very consistent naming convention
@@ -115,10 +115,10 @@ Pre-processing
     All code to pre-process the data.
 
     Throughout this process, I often came back to notebook 3. This is
-    where I created clean data sets, that fit various scenarios. First,
+    where I created clean data sets that fit various scenarios. First,
     I ensured there were at least three images per class, so we would
     have one image for training, validation and testing. Later on, I
-    wanted to see what would happen if I made the images square, by
+    wanted to see what would happen if I made the images square by
     padding the top and bottom. Near the end of the project, I wanted to
     test classes that had eight or more images, then seven or fewer.
     These results will appear later under Data Tuning.
@@ -142,8 +142,8 @@ EDA
     All code to perform EDA.
 
     First up was figuring out how many images we had per class. While it
-    varied greatly, as shown by the first image. The histogram showed
-    that most classes had at least eight images.
+    varied greatly, as shown by the first image, the histogram showed
+    most classes had at least eight images.
 
     ![](./media/image8.png)
 
@@ -299,14 +299,14 @@ random set of features during each epoch. While this is good for
 generalization, it requires more epochs for training and often lowers
 accuracy. Batch normalization takes a different approach.
 
-Instead of ignoring features, it normalizes the output of one layer and
-before passing it to the next layer. This ensures that during each
+Instead of ignoring features, it normalizes the output of one layer
+before passing it to the next. This ensures that during each
 epoch, the model is using the same distribution between all layers. With
 no generalization, we simply pass data as it is. My experiments showed
 that batch normalization was probably the best. Just like in other
 experiments, there was not a clear winner, but something that seemed to
 generalize better, while still having room to improve with more
-training. More importantly, batch normalization shows a steadily
+training. More importantly, batch normalization showed a steadily
 decreasing validation loss.
 
 ![](./media/image20.png)
@@ -320,8 +320,8 @@ Figure . Droput 20% vs. 40%.
 Model tuning
 ------------
 
-Now we have a final model, including data transforms and normalization,
-we need to tune the model. There are two hyperparameters that should be
+Once we had the final model, including data transforms and normalization.
+We then needed to tune the model. There are two hyperparameters that should be
 tuned using ResNet-34 with ADAM optimization, learning rate and batch
 size.
 
@@ -343,8 +343,8 @@ size.
 
 Learning rate is the first hyperparameter to tune. I tested rates as
 high as 0.003 and as low as 0.001. In general, I found that lower
-learning rates had less various between epochs, but the effect was not
-nearly as different as I expected. There is a lot of randomness from one
+learning rates had less variation between epochs, but the effect was not
+nearly as dramatic as I expected. There was a lot of randomness from one
 epoch to the next.
 
 The image below shows the difference between lr=0.001 for 100 epochs and
@@ -353,7 +353,7 @@ slightly smaller peaks and valleys. I also tested learning rate decay.
 It did not perform well. See notebook 10 for the results. Finally, I
 tested lr=0.003 and let it run for 200 epochs. That provided promising
 results. In the end, I decided to stick with lr=0.0005, as it should
-provide the most consistent results, considering the variance we see
+provide the most consistent results, considering the variance we saw
 from epoch to epoch.
 
 ![](./media/image22.png)
@@ -375,10 +375,10 @@ Figure . Learning rate 0.003.
 
     Throughout most of this work, I assumed batch size only impacted the
     physical performance of the model. Larger batch sizes would take
-    less time to train than smaller batch sizes. I found out that the
+    less time to train than smaller ones. I found out that the
     ADAM optimizer changes with batch size, as the gradients are
     calculated after each batch. Using a batch size of 64 worked best.
-    128 did showed more variance after 75 epochs and 32 showed an
+    128 showed more variance after 75 epochs and 32 showed an
     increasing validation loss.
 
     ![](./media/image24.png)
@@ -401,9 +401,9 @@ Links
     modelingfunctions.dataprocessing, modelingfunctions.modeling and
     modelingfunctions.utilities.)
 
-    It has been a long journey, but we are not at the point where we can
+    It has been a long journey, but we are now at the point where we can
     see the final model. This is a ResNet-34 model, using ADAM
-    optimization and batch normalization. We use a batch size or 64 and
+    optimization and batch normalization. We use a batch size of 64 and
     a learning rate of 0.0005. Towards the end of 200 epochs, it
     consistently hits above 40% accuracy and above 70% top-3 accuracy.
     This is the best results from any model shown previously. Not bad.

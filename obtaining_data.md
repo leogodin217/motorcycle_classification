@@ -17,7 +17,7 @@ able to download about 700 images by searching for specific makes and
 years. The below results are from a search on "2017 kawasaki". Notice
 how we get multiple models and that the naming conventions are pretty
 consistent. they include the year, make and model, with a few different
-suffixes. I was able to create a few regular expressions to obtained
+suffixes. I was able to create a few regular expressions to obtain
 clean classes for each image. The first images results in a class of
 "2017 kawasaki ninja 300". This first data set included 367 classes
 across 700 images. Not a bad start, but it is unlikely that this small

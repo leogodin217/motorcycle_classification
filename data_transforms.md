@@ -7,8 +7,8 @@
     modelingfunctions.utilities.)
 
 While there was no clear winner. The complex transforms, using the
-default size held the most promise. Even though it did not result in the
-highest accuracy, it had more room to grow and less difference between
+default size, held the most promise. Even though they did not result in the
+highest accuracy, the model had more room to grow and less difference between
 training loss and validation loss. Others, that performed slightly
 better after 50 epochs, saw a logarithmic pattern to accuracy, which
 suggests they will not gain much from further training. All models
