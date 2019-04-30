@@ -102,8 +102,8 @@ The initial data set consisted of 700 images across 366 classes. This was
 simply too few images per class. To augment the initial data, I utilized
 the Bing search API and finished with 2800 images.
 
-For more information on the process of obtaining data, follow this link.
-[Obtaining data](https://github.com/leogodin217/motorcycle_classification/blob/master/obtaining_data.md)
+For more information on the process of obtaining data, see
+[Obtaining data](https://github.com/leogodin217/motorcycle_classification/blob/master/obtaining_data.md).
 
 Pre-processing
 ---------------
@@ -196,40 +196,12 @@ I tested several different transforms. The most basic was a default
 transform that simply resized and cropped the images. The more complex
 transforms included data augmentation by performing random transforms
 like color jitter and rotation. Data augmentation is common when data is
-limited. Furthermore, I tried wider, smaller and larger transforms.
+limited. Furthermore, I tried wider, smaller and larger transforms. Data augmentation
+at 244x244 resolution provided the best results.
 
-While there was no clear winner. The complex transforms, using the
-default size held the most promise. Even though it did not result in the
-highest accuracy, it had more room to grow and less difference between
-training loss and validation loss. Others, that performed slightly
-better after 50 epochs, saw a logarithmic pattern to accuracy, which
-suggests they will not gain much from further training. All models
-showed a strong divergence between training loss and validation loss.
-This suggests the model may not generalize well.
+For more inforamtion on data transformations, see [data transformation](https://github.com/leogodin217/motorcycle_classification/blob/master/data_transforms.md).
 
-Note that all complex transforms were only applied to training data.
-Test and validation data utilized simple transforms.
 
-Images showing results all include a single plot for training and
-validation loss combined with test accuracy. A second plot shows the
-test accuracy and top-3 accuracy. Notice how the basic data starts
-strong but tails off after 35 epochs. The complex transforms vary more
-but are generally increasing in accuracy. More results are included in
-notebook 5.
-
-![](./media/image13.png)
-
-Figure 11. Basic transforms.
-
-![](./media/image14.png)
-
-Figure 12. Complex transforms.
-
-![](./media/image15.png)
-
-Figure 13. Basic transforms.
-
-![](./media/image2.png)
 -------------------------------------------------------------------
 
 Figure 14. Complex transforms.
