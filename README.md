@@ -222,6 +222,8 @@ Balance
     found that the more images per class, the better the model
     performed.
 
+    For more information on data balance, see [data balance](https://github.com/leogodin217/motorcycle_classification/blob/master/data_balance.md)
+
 Modeling
 ========
 
