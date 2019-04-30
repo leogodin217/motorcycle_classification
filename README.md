@@ -74,12 +74,29 @@ pip -e.
 Data
 ====
 
+
 I could not find any existing free data sets for image classification.
 There were commercial options, but prices were not listed. In the end, I
 decided to create my own data set. After a lot of experimentation, I
 found that totalmotorcycle.com had a very consistent naming convention
 for motorcycles and included just about every commercial motorcycle ever
 made. This was a good start.
+
+
+
+Obtaining Data
+--------------
+
+### Links
+
+-   [Notebook
+    1](https://github.com/leogodin217/motorcycle_classification/blob/master/code/1%20-%20First%20Motorcycle%20Data.ipynb):
+    All code to obtain the first 700 images with 366 classes.
+
+-   [Notebook
+    2](https://github.com/leogodin217/motorcycle_classification/blob/master/code/2%20-%20Finding%20Motorcycle%20Data.ipynb):
+    Code needed to obtain 2800 images across 366 classes. (Uses
+    randomdatautilities.downloads from this repository).
 
 The initial data set consisted of 700 images across 366 classes. This was
 simply too few images per class. To augment the initial data, I utilized
